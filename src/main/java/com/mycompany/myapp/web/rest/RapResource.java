@@ -163,6 +163,12 @@ public class RapResource {
         return ResponseUtil.wrapOrNotFound(rap);
     }
 
+    @GetMapping("/by-cum-rap/{id}")
+    public List<Rap> getAllRapsByCumRapId(@PathVariable("id") Long id) {
+        log.debug("REST request to get Rap by CumRapId : {}", id);
+        return rapRepository.findAllByCumRapId(id);
+    }
+
     /**
      * {@code DELETE  /raps/:id} : delete the "id" rap.
      *

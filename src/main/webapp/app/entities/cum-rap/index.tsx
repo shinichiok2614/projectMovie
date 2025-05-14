@@ -7,13 +7,15 @@ import CumRap from './cum-rap';
 import CumRapDetail from './cum-rap-detail';
 import CumRapUpdate from './cum-rap-update';
 import CumRapDeleteDialog from './cum-rap-delete-dialog';
+import CumRapRap from './cum-rap-rap';
 
 const CumRapRoutes = () => (
   <ErrorBoundaryRoutes>
     <Route index element={<CumRap />} />
     <Route path="new" element={<CumRapUpdate />} />
     <Route path=":id">
-      <Route index element={<CumRapDetail />} />
+      {/* <Route index element={<CumRapDetail />} /> */}
+      <Route index element={<CumRapRap />} />
       <Route path="edit" element={<CumRapUpdate />} />
       <Route path="delete" element={<CumRapDeleteDialog />} />
     </Route>
