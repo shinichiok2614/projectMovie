@@ -1,14 +1,71 @@
 import './home.scss';
 
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Translate } from 'react-jhipster';
-import { Row, Col, Alert } from 'reactstrap';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { byteSize, getSortState, openFile, Translate } from 'react-jhipster';
+import { Row, Col, Alert, Table, Button } from 'reactstrap';
 
-import { useAppSelector } from 'app/config/store';
+import { useAppDispatch, useAppSelector } from 'app/config/store';
+import { overrideSortStateWithQueryParams } from 'app/shared/util/entity-utils';
+import { getEntities } from 'app/entities/cum-rap/cum-rap.reducer';
+import { ASC, DESC } from 'app/shared/util/pagination.constants';
+import { faSort, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const Home = () => {
   const account = useAppSelector(state => state.authentication.account);
+
+  const dispatch = useAppDispatch();
+
+  const pageLocation = useLocation();
+  const navigate = useNavigate();
+
+  const [sortState, setSortState] = useState(overrideSortStateWithQueryParams(getSortState(pageLocation, 'id'), pageLocation.search));
+
+  const cumRapList = useAppSelector(state => state.cumRap.entities);
+  const loading = useAppSelector(state => state.cumRap.loading);
+
+  const getAllEntities = () => {
+    dispatch(
+      getEntities({
+        sort: `${sortState.sort},${sortState.order}`,
+      }),
+    );
+  };
+
+  const sortEntities = () => {
+    getAllEntities();
+    const endURL = `?sort=${sortState.sort},${sortState.order}`;
+    if (pageLocation.search !== endURL) {
+      navigate(`${pageLocation.pathname}${endURL}`);
+    }
+  };
+
+  useEffect(() => {
+    sortEntities();
+  }, [sortState.order, sortState.sort]);
+
+  const sort = p => () => {
+    setSortState({
+      ...sortState,
+      order: sortState.order === ASC ? DESC : ASC,
+      sort: p,
+    });
+  };
+
+  const handleSyncList = () => {
+    sortEntities();
+  };
+
+  const getSortIconByFieldName = (fieldName: string) => {
+    const sortFieldName = sortState.sort;
+    const order = sortState.order;
+    if (sortFieldName !== fieldName) {
+      return faSort;
+    } else {
+      return order === ASC ? faSortUp : faSortDown;
+    }
+  };
 
   return (
     <Row>
@@ -16,82 +73,86 @@ export const Home = () => {
         <span className="hipster rounded" />
       </Col>
       <Col md="9">
-        <h1 className="display-4">
-          <Translate contentKey="home.title">Welcome, Java Hipster!</Translate>
-        </h1>
-        <p className="lead">
-          <Translate contentKey="home.subtitle">This is your homepage</Translate>
-        </p>
-        {account?.login ? (
-          <div>
-            <Alert color="success">
-              <Translate contentKey="home.logged.message" interpolate={{ username: account.login }}>
-                You are logged in as user {account.login}.
-              </Translate>
-            </Alert>
-          </div>
+        {cumRapList && cumRapList.length > 0 ? (
+          <Table responsive>
+            <thead>
+              <tr>
+                <th className="hand" onClick={sort('id')}>
+                  <Translate contentKey="projectMovieApp.cumRap.id">ID</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('id')} />
+                </th>
+                <th className="hand" onClick={sort('tenCumRap')}>
+                  <Translate contentKey="projectMovieApp.cumRap.tenCumRap">Ten Cum Rap</Translate>{' '}
+                  <FontAwesomeIcon icon={getSortIconByFieldName('tenCumRap')} />
+                </th>
+                <th className="hand" onClick={sort('logo')}>
+                  <Translate contentKey="projectMovieApp.cumRap.logo">Logo</Translate>{' '}
+                  <FontAwesomeIcon icon={getSortIconByFieldName('logo')} />
+                </th>
+                <th />
+              </tr>
+            </thead>
+            <tbody>
+              {cumRapList.map((cumRap, i) => (
+                <tr key={`entity-${i}`} data-cy="entityTable">
+                  <td>
+                    <Button tag={Link} to={`/cum-rap/${cumRap.id}`} color="link" size="sm">
+                      {cumRap.id}
+                    </Button>
+                  </td>
+                  <td>{cumRap.tenCumRap}</td>
+                  <td>
+                    {cumRap.logo ? (
+                      <div>
+                        {cumRap.logoContentType ? (
+                          <a onClick={openFile(cumRap.logoContentType, cumRap.logo)}>
+                            <img src={`data:${cumRap.logoContentType};base64,${cumRap.logo}`} style={{ maxHeight: '30px' }} />
+                            &nbsp;
+                          </a>
+                        ) : null}
+                        <span>
+                          {cumRap.logoContentType}, {byteSize(cumRap.logo)}
+                        </span>
+                      </div>
+                    ) : null}
+                  </td>
+                  <td className="text-end">
+                    <div className="btn-group flex-btn-group-container">
+                      <Button tag={Link} to={`/cum-rap/${cumRap.id}`} color="info" size="sm" data-cy="entityDetailsButton">
+                        <FontAwesomeIcon icon="eye" />{' '}
+                        <span className="d-none d-md-inline">
+                          <Translate contentKey="entity.action.view">View</Translate>
+                        </span>
+                      </Button>
+                      <Button tag={Link} to={`/cum-rap/${cumRap.id}/edit`} color="primary" size="sm" data-cy="entityEditButton">
+                        <FontAwesomeIcon icon="pencil-alt" />{' '}
+                        <span className="d-none d-md-inline">
+                          <Translate contentKey="entity.action.edit">Edit</Translate>
+                        </span>
+                      </Button>
+                      <Button
+                        onClick={() => (window.location.href = `/cum-rap/${cumRap.id}/delete`)}
+                        color="danger"
+                        size="sm"
+                        data-cy="entityDeleteButton"
+                      >
+                        <FontAwesomeIcon icon="trash" />{' '}
+                        <span className="d-none d-md-inline">
+                          <Translate contentKey="entity.action.delete">Delete</Translate>
+                        </span>
+                      </Button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
         ) : (
-          <div>
-            <Alert color="warning">
-              <Translate contentKey="global.messages.info.authenticated.prefix">If you want to </Translate>
-
-              <Link to="/login" className="alert-link">
-                <Translate contentKey="global.messages.info.authenticated.link"> sign in</Translate>
-              </Link>
-              <Translate contentKey="global.messages.info.authenticated.suffix">
-                , you can try the default accounts:
-                <br />- Administrator (login=&quot;admin&quot; and password=&quot;admin&quot;)
-                <br />- User (login=&quot;user&quot; and password=&quot;user&quot;).
-              </Translate>
-            </Alert>
-
-            <Alert color="warning">
-              <Translate contentKey="global.messages.info.register.noaccount">You do not have an account yet?</Translate>&nbsp;
-              <Link to="/account/register" className="alert-link">
-                <Translate contentKey="global.messages.info.register.link">Register a new account</Translate>
-              </Link>
-            </Alert>
-          </div>
+          !loading && (
+            <div className="alert alert-warning">
+              <Translate contentKey="projectMovieApp.cumRap.home.notFound">No Cum Raps found</Translate>
+            </div>
+          )
         )}
-        <p>
-          <Translate contentKey="home.question">If you have any question on JHipster:</Translate>
-        </p>
-
-        <ul>
-          <li>
-            <a href="https://www.jhipster.tech/" target="_blank" rel="noopener noreferrer">
-              <Translate contentKey="home.link.homepage">JHipster homepage</Translate>
-            </a>
-          </li>
-          <li>
-            <a href="https://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener noreferrer">
-              <Translate contentKey="home.link.stackoverflow">JHipster on Stack Overflow</Translate>
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener noreferrer">
-              <Translate contentKey="home.link.bugtracker">JHipster bug tracker</Translate>
-            </a>
-          </li>
-          <li>
-            <a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">
-              <Translate contentKey="home.link.chat">JHipster public chat room</Translate>
-            </a>
-          </li>
-          <li>
-            <a href="https://twitter.com/jhipster" target="_blank" rel="noopener noreferrer">
-              <Translate contentKey="home.link.follow">follow @jhipster on Twitter</Translate>
-            </a>
-          </li>
-        </ul>
-
-        <p>
-          <Translate contentKey="home.like">If you like JHipster, do not forget to give us a star on</Translate>{' '}
-          <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">
-            GitHub
-          </a>
-          !
-        </p>
       </Col>
     </Row>
   );
