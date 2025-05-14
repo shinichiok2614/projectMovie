@@ -123,6 +123,12 @@ export const Home = () => {
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
+                      <Button tag={Link} to={`/cum-rap/${cumRap.id}`} color="info" size="sm" data-cy="entityDetailsButton">
+                        <FontAwesomeIcon icon="eye" />{' '}
+                        <span className="d-none d-md-inline">
+                          <Translate contentKey="entity.action.view">View 1</Translate>
+                        </span>
+                      </Button>
                       <Button tag={Link} to={`/cum-rap/${cumRap.id}/edit`} color="primary" size="sm" data-cy="entityEditButton">
                         <FontAwesomeIcon icon="pencil-alt" />{' '}
                         <span className="d-none d-md-inline">

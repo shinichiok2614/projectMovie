@@ -27,11 +27,29 @@ export const getEntities = createAsyncThunk(
   { serializeError: serializeAxiosError },
 );
 
+export const getEntitiesByCumRapId = createAsyncThunk(
+  'rap/fetch_entity_list_by_cum_rap_id',
+  async (id: string | number) => {
+    const requestUrl = `${apiUrl}/by-cum-rap/${id}`;
+    return axios.get<IRap[]>(requestUrl);
+  },
+  { serializeError: serializeAxiosError },
+);
+
 export const getEntity = createAsyncThunk(
   'rap/fetch_entity',
   async (id: string | number) => {
     const requestUrl = `${apiUrl}/${id}`;
     return axios.get<IRap>(requestUrl);
+  },
+  { serializeError: serializeAxiosError },
+);
+
+export const getEntityByCumRapId = createAsyncThunk(
+  'rap/fetch_entity_list_by_cum_rap_id',
+  async (id: string | number) => {
+    const requestUrl = `${apiUrl}/by-cum-rap/${id}`;
+    return axios.get<IRap[]>(requestUrl);
   },
   { serializeError: serializeAxiosError },
 );
@@ -88,6 +106,10 @@ export const RapSlice = createEntitySlice({
         state.loading = false;
         state.entity = action.payload.data;
       })
+      .addCase(getEntitiesByCumRapId.fulfilled, (state, action) => {
+        state.loading = false;
+        state.entities = action.payload.data;
+      })
       .addCase(deleteEntity.fulfilled, state => {
         state.updating = false;
         state.updateSuccess = true;
@@ -115,7 +137,7 @@ export const RapSlice = createEntitySlice({
         state.updateSuccess = true;
         state.entity = action.payload.data;
       })
-      .addMatcher(isPending(getEntities, getEntity), state => {
+      .addMatcher(isPending(getEntities, getEntitiesByCumRapId, getEntity), state => {
         state.errorMessage = null;
         state.updateSuccess = false;
         state.loading = true;
