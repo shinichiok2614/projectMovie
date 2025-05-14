@@ -1,0 +1,28 @@
+{
+  "projectMovieApp": {
+    "suatChieu": {
+      "home": {
+        "title": "Suat Chieus",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Suat Chieu",
+        "createOrEditLabel": "Create or edit a Suat Chieu",
+        "notFound": "No Suat Chieus found"
+      },
+      "created": "A new Suat Chieu is created with identifier {{ param }}",
+      "updated": "A Suat Chieu is updated with identifier {{ param }}",
+      "deleted": "A Suat Chieu is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Suat Chieu {{ id }}?"
+      },
+      "detail": {
+        "title": "Suat Chieu"
+      },
+      "id": "ID",
+      "ngayChieu": "Ngay Chieu",
+      "gioChieu": "Gio Chieu",
+      "ves": "Ves",
+      "phong": "Phong",
+      "phim": "Phim"
+    }
+  }
+}

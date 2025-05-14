@@ -1,0 +1,38 @@
+{
+  "annotations": {
+    "changelogDate": "20250514045841"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "tenPhong",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Phong",
+  "relationships": [
+    {
+      "otherEntityName": "ghe",
+      "otherEntityRelationshipName": "phong",
+      "relationshipName": "ghesPhong",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "suatChieu",
+      "otherEntityRelationshipName": "phong",
+      "relationshipName": "suatChieusPhong",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "rap",
+      "otherEntityRelationshipName": "phongs",
+      "relationshipName": "rap",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}

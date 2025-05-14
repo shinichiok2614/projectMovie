@@ -1,0 +1,25 @@
+{
+  "projectMovieApp": {
+    "danhSachGhe": {
+      "home": {
+        "title": "Danh Sach Ghes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Danh Sach Ghe",
+        "createOrEditLabel": "Create or edit a Danh Sach Ghe",
+        "notFound": "No Danh Sach Ghes found"
+      },
+      "created": "A new Danh Sach Ghe is created with identifier {{ param }}",
+      "updated": "A Danh Sach Ghe is updated with identifier {{ param }}",
+      "deleted": "A Danh Sach Ghe is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Danh Sach Ghe {{ id }}?"
+      },
+      "detail": {
+        "title": "Danh Sach Ghe"
+      },
+      "id": "ID",
+      "soDienThoai": "So Dien Thoai",
+      "tenGhe": "Ten Ghe"
+    }
+  }
+}

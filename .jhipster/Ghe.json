@@ -1,0 +1,44 @@
+{
+  "annotations": {
+    "changelogDate": "20250514045842"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "tenGhe",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "tinhTrang",
+      "fieldType": "TinhTrangGhe",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "TRONG,DA_DAT,DA_CHON"
+    }
+  ],
+  "name": "Ghe",
+  "relationships": [
+    {
+      "otherEntityName": "phong",
+      "otherEntityRelationshipName": "ghesPhong",
+      "relationshipName": "phong",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "ve",
+      "otherEntityRelationshipName": "ghesVe",
+      "relationshipName": "ve",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "loaiGhe",
+      "otherEntityRelationshipName": "gheList",
+      "relationshipName": "loaiGhe",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}

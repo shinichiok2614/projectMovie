@@ -1,0 +1,26 @@
+{
+  "projectMovieApp": {
+    "cumRap": {
+      "home": {
+        "title": "Cum Raps",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Cum Rap",
+        "createOrEditLabel": "Create or edit a Cum Rap",
+        "notFound": "No Cum Raps found"
+      },
+      "created": "A new Cum Rap is created with identifier {{ param }}",
+      "updated": "A Cum Rap is updated with identifier {{ param }}",
+      "deleted": "A Cum Rap is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Cum Rap {{ id }}?"
+      },
+      "detail": {
+        "title": "Cum Rap"
+      },
+      "id": "ID",
+      "tenCumRap": "Ten Cum Rap",
+      "logo": "Logo",
+      "raps": "Raps"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "annotations": {
+    "changelogDate": "20250514045837"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "tenPhim",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "thoiLuong",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "gioiThieu",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ngayCongChieu",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "linkTrailer",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "logo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "doTuoi",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "theLoai",
+      "fieldType": "TheLoai",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "KINH_DI,TAM_LY,HAI"
+    },
+    {
+      "fieldName": "dinhDang",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Phim",
+  "relationships": [
+    {
+      "otherEntityName": "suatChieu",
+      "otherEntityRelationshipName": "phim",
+      "relationshipName": "suatChieusPhim",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

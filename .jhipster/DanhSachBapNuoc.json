@@ -1,0 +1,29 @@
+{
+  "annotations": {
+    "changelogDate": "20250514045846"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "soDienThoai",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "tenBapNuoc",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "DanhSachBapNuoc",
+  "relationships": [
+    {
+      "otherEntityName": "ve",
+      "otherEntityRelationshipName": "danhSachBapNuoc",
+      "relationshipName": "ve",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}

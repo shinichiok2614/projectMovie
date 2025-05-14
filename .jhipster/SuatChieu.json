@@ -1,0 +1,43 @@
+{
+  "annotations": {
+    "changelogDate": "20250514045838"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "ngayChieu",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "gioChieu",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "SuatChieu",
+  "relationships": [
+    {
+      "otherEntityName": "ve",
+      "otherEntityRelationshipName": "suatChieu",
+      "relationshipName": "ves",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "phong",
+      "otherEntityRelationshipName": "suatChieusPhong",
+      "relationshipName": "phong",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "phim",
+      "otherEntityRelationshipName": "suatChieusPhim",
+      "relationshipName": "phim",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}

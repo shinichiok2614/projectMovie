@@ -1,0 +1,30 @@
+{
+  "projectMovieApp": {
+    "ve": {
+      "home": {
+        "title": "Ves",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Ve",
+        "createOrEditLabel": "Create or edit a Ve",
+        "notFound": "No Ves found"
+      },
+      "created": "A new Ve is created with identifier {{ param }}",
+      "updated": "A Ve is updated with identifier {{ param }}",
+      "deleted": "A Ve is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Ve {{ id }}?"
+      },
+      "detail": {
+        "title": "Ve"
+      },
+      "id": "ID",
+      "soDienThoai": "So Dien Thoai",
+      "email": "Email",
+      "giaTien": "Gia Tien",
+      "tinhTrang": "Tinh Trang",
+      "ghesVe": "Ghes Ve",
+      "danhSachBapNuoc": "Danh Sach Bap Nuoc",
+      "suatChieu": "Suat Chieu"
+    }
+  }
+}

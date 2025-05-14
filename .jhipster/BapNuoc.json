@@ -1,0 +1,26 @@
+{
+  "annotations": {
+    "changelogDate": "20250514045844"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "tenBapNuoc",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "logo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "giaTien",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "BapNuoc",
+  "relationships": [],
+  "searchEngine": "no"
+}

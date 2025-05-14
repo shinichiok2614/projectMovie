@@ -1,0 +1,29 @@
+{
+  "annotations": {
+    "changelogDate": "20250514045843"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "tenLoai",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "giaTien",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "LoaiGhe",
+  "relationships": [
+    {
+      "otherEntityName": "ghe",
+      "otherEntityRelationshipName": "loaiGhe",
+      "relationshipName": "gheList",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

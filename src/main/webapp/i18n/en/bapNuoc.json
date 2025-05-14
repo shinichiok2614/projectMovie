@@ -1,0 +1,26 @@
+{
+  "projectMovieApp": {
+    "bapNuoc": {
+      "home": {
+        "title": "Bap Nuocs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Bap Nuoc",
+        "createOrEditLabel": "Create or edit a Bap Nuoc",
+        "notFound": "No Bap Nuocs found"
+      },
+      "created": "A new Bap Nuoc is created with identifier {{ param }}",
+      "updated": "A Bap Nuoc is updated with identifier {{ param }}",
+      "deleted": "A Bap Nuoc is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Bap Nuoc {{ id }}?"
+      },
+      "detail": {
+        "title": "Bap Nuoc"
+      },
+      "id": "ID",
+      "tenBapNuoc": "Ten Bap Nuoc",
+      "logo": "Logo",
+      "giaTien": "Gia Tien"
+    }
+  }
+}

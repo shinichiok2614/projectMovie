@@ -1,0 +1,26 @@
+{
+  "projectMovieApp": {
+    "loaiGhe": {
+      "home": {
+        "title": "Loai Ghes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Loai Ghe",
+        "createOrEditLabel": "Create or edit a Loai Ghe",
+        "notFound": "No Loai Ghes found"
+      },
+      "created": "A new Loai Ghe is created with identifier {{ param }}",
+      "updated": "A Loai Ghe is updated with identifier {{ param }}",
+      "deleted": "A Loai Ghe is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Loai Ghe {{ id }}?"
+      },
+      "detail": {
+        "title": "Loai Ghe"
+      },
+      "id": "ID",
+      "tenLoai": "Ten Loai",
+      "giaTien": "Gia Tien",
+      "gheList": "Ghe List"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "annotations": {
+    "changelogDate": "20250514045847"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "soDienThoai",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "giaTien",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "tinhTrang",
+      "fieldType": "TinhTrangVe",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "CHUA_THANH_TOAN,DA_THANH_TOAN"
+    }
+  ],
+  "name": "Ve",
+  "relationships": [
+    {
+      "otherEntityName": "ghe",
+      "otherEntityRelationshipName": "ve",
+      "relationshipName": "ghesVe",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "danhSachBapNuoc",
+      "otherEntityRelationshipName": "ve",
+      "relationshipName": "danhSachBapNuoc",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "suatChieu",
+      "otherEntityRelationshipName": "ves",
+      "relationshipName": "suatChieu",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}

@@ -1,0 +1,33 @@
+{
+  "projectMovieApp": {
+    "phim": {
+      "home": {
+        "title": "Phims",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Phim",
+        "createOrEditLabel": "Create or edit a Phim",
+        "notFound": "No Phims found"
+      },
+      "created": "A new Phim is created with identifier {{ param }}",
+      "updated": "A Phim is updated with identifier {{ param }}",
+      "deleted": "A Phim is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Phim {{ id }}?"
+      },
+      "detail": {
+        "title": "Phim"
+      },
+      "id": "ID",
+      "tenPhim": "Ten Phim",
+      "thoiLuong": "Thoi Luong",
+      "gioiThieu": "Gioi Thieu",
+      "ngayCongChieu": "Ngay Cong Chieu",
+      "linkTrailer": "Link Trailer",
+      "logo": "Logo",
+      "doTuoi": "Do Tuoi",
+      "theLoai": "The Loai",
+      "dinhDang": "Dinh Dang",
+      "suatChieusPhim": "Suat Chieus Phim"
+    }
+  }
+}

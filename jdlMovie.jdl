@@ -1,0 +1,93 @@
+enum TheLoai {
+  KINH_DI,
+  TAM_LY,
+  HAI
+}
+
+enum TinhTrangGhe {
+  TRONG,
+  DA_DAT,
+  DA_CHON
+}
+
+enum TinhTrangVe {
+  CHUA_THANH_TOAN,
+  DA_THANH_TOAN
+}
+
+entity Phim {
+  tenPhim String required,
+  thoiLuong Integer required,
+  gioiThieu String,
+  ngayCongChieu LocalDate,
+  linkTrailer String,
+  logo ImageBlob,
+  doTuoi String,
+  theLoai TheLoai required,
+  dinhDang String
+}
+
+entity SuatChieu {
+  ngayChieu LocalDate required,
+  gioChieu String required
+}
+
+entity CumRap {
+  tenCumRap String required,
+  logo ImageBlob
+}
+
+entity Rap {
+  tenRap String required,
+  diaChi String,
+  thanhPho String
+}
+
+entity Phong {
+  tenPhong String required
+}
+
+entity Ghe {
+  tenGhe String required,
+  tinhTrang TinhTrangGhe required
+}
+
+entity LoaiGhe {
+  tenLoai String required,
+  giaTien Integer required
+}
+
+entity BapNuoc {
+  tenBapNuoc String required,
+  logo ImageBlob,
+  giaTien Integer required
+}
+
+entity DanhSachGhe {
+  soDienThoai String required,
+  tenGhe String required
+}
+
+entity DanhSachBapNuoc {
+  soDienThoai String required,
+  tenBapNuoc String required
+}
+
+entity Ve {
+  soDienThoai String required,
+  email String,
+  giaTien Integer required,
+  tinhTrang TinhTrangVe required
+}
+
+relationship OneToMany {
+  CumRap{raps} to Rap{cumRap},
+  Rap{phongs} to Phong{rap},
+  Phong{ghesPhong} to Ghe{phong},
+  Phong{suatChieusPhong} to SuatChieu{phong},
+  Phim{suatChieusPhim} to SuatChieu{phim},
+  SuatChieu{ves} to Ve{suatChieu}
+  Ve{ghesVe} to Ghe{ve},
+  Ve{danhSachBapNuoc} to DanhSachBapNuoc{ve}
+  LoaiGhe{gheList} to Ghe{loaiGhe},
+}

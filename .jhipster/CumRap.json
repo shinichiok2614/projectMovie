@@ -1,0 +1,29 @@
+{
+  "annotations": {
+    "changelogDate": "20250514045839"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "tenCumRap",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "logo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    }
+  ],
+  "name": "CumRap",
+  "relationships": [
+    {
+      "otherEntityName": "rap",
+      "otherEntityRelationshipName": "cumRap",
+      "relationshipName": "raps",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

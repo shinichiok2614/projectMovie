@@ -1,0 +1,39 @@
+{
+  "annotations": {
+    "changelogDate": "20250514045840"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "tenRap",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "diaChi",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "thanhPho",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Rap",
+  "relationships": [
+    {
+      "otherEntityName": "phong",
+      "otherEntityRelationshipName": "rap",
+      "relationshipName": "phongs",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "cumRap",
+      "otherEntityRelationshipName": "raps",
+      "relationshipName": "cumRap",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}
