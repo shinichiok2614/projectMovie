@@ -160,6 +160,12 @@ public class GheResource {
         return ResponseUtil.wrapOrNotFound(ghe);
     }
 
+    @GetMapping("/by-phong/{id}")
+    public List<Ghe> getGhesByPhongId(@PathVariable("id") Long id) {
+        log.debug("REST request to get Ghe by phong id : {}", id);
+        return gheRepository.findAllByPhongId(id);
+    }
+
     /**
      * {@code DELETE  /ghes/:id} : delete the "id" ghe.
      *

@@ -36,6 +36,15 @@ export const getEntity = createAsyncThunk(
   { serializeError: serializeAxiosError },
 );
 
+export const getEntitiesByRapId = createAsyncThunk(
+  'phong/fetch_entity_list_by_rapid',
+  async (id: string | number) => {
+    const requestUrl = `${apiUrl}/by-rap/${id}`;
+    return axios.get<IPhong[]>(requestUrl);
+  },
+  { serializeError: serializeAxiosError },
+);
+
 export const createEntity = createAsyncThunk(
   'phong/create_entity',
   async (entity: IPhong, thunkAPI) => {
@@ -88,6 +97,10 @@ export const PhongSlice = createEntitySlice({
         state.loading = false;
         state.entity = action.payload.data;
       })
+      .addCase(getEntitiesByRapId.fulfilled, (state, action) => {
+        state.loading = false;
+        state.entities = action.payload.data;
+      })
       .addCase(deleteEntity.fulfilled, state => {
         state.updating = false;
         state.updateSuccess = true;
@@ -115,7 +128,7 @@ export const PhongSlice = createEntitySlice({
         state.updateSuccess = true;
         state.entity = action.payload.data;
       })
-      .addMatcher(isPending(getEntities, getEntity), state => {
+      .addMatcher(isPending(getEntities, getEntitiesByRapId, getEntity), state => {
         state.errorMessage = null;
         state.updateSuccess = false;
         state.loading = true;

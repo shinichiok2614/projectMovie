@@ -159,6 +159,12 @@ public class PhongResource {
         return ResponseUtil.wrapOrNotFound(phong);
     }
 
+    @GetMapping("/by-rap/{id}")
+    public List<Phong> getPhongbyRapId(@PathVariable("id") Long id) {
+        log.debug("REST request to get Phong by Rap: {}", id);
+        return phongRepository.findAllByRapId(id);
+    }
+
     /**
      * {@code DELETE  /phongs/:id} : delete the "id" phong.
      *
