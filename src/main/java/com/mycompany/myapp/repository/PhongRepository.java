@@ -1,6 +1,8 @@
 package com.mycompany.myapp.repository;
 
 import com.mycompany.myapp.domain.Phong;
+import com.mycompany.myapp.domain.Rap;
+import java.util.List;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
@@ -9,4 +11,6 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface PhongRepository extends JpaRepository<Phong, Long> {}
+public interface PhongRepository extends JpaRepository<Phong, Long> {
+    List<Phong> findAllByRapId(Long rapId);
+}

@@ -36,6 +36,15 @@ export const getEntity = createAsyncThunk(
   { serializeError: serializeAxiosError },
 );
 
+export const getEntitiesByPhongId = createAsyncThunk(
+  'ghe/fetch_entity_by_phong_id',
+  async (id: string | number) => {
+    const requestUrl = `${apiUrl}/by-phong/${id}`;
+    return axios.get<IGhe[]>(requestUrl);
+  },
+  { serializeError: serializeAxiosError },
+);
+
 export const createEntity = createAsyncThunk(
   'ghe/create_entity',
   async (entity: IGhe, thunkAPI) => {
@@ -88,6 +97,10 @@ export const GheSlice = createEntitySlice({
         state.loading = false;
         state.entity = action.payload.data;
       })
+      .addCase(getEntitiesByPhongId.fulfilled, (state, action) => {
+        state.loading = false;
+        state.entities = action.payload.data;
+      })
       .addCase(deleteEntity.fulfilled, state => {
         state.updating = false;
         state.updateSuccess = true;
@@ -115,7 +128,7 @@ export const GheSlice = createEntitySlice({
         state.updateSuccess = true;
         state.entity = action.payload.data;
       })
-      .addMatcher(isPending(getEntities, getEntity), state => {
+      .addMatcher(isPending(getEntities, getEntitiesByPhongId, getEntity), state => {
         state.errorMessage = null;
         state.updateSuccess = false;
         state.loading = true;

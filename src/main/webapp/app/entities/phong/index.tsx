@@ -7,13 +7,15 @@ import Phong from './phong';
 import PhongDetail from './phong-detail';
 import PhongUpdate from './phong-update';
 import PhongDeleteDialog from './phong-delete-dialog';
+import PhongGhe from './phong-ghe';
 
 const PhongRoutes = () => (
   <ErrorBoundaryRoutes>
     <Route index element={<Phong />} />
     <Route path="new" element={<PhongUpdate />} />
     <Route path=":id">
-      <Route index element={<PhongDetail />} />
+      {/* <Route index element={<PhongDetail />} /> */}
+      <Route index element={<PhongGhe />} />
       <Route path="edit" element={<PhongUpdate />} />
       <Route path="delete" element={<PhongDeleteDialog />} />
     </Route>
